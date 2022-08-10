@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  api:
+    depends_on:
+      - db
+    restart: always
+    build: .
+    ports:
+      - "8080:3000"
+    environment:
+      - DB_URL=mongodb://db_mongo
+  db:
+    image: mongo:latest
+    container_name: db_mongo
+    ports:
+      - 27017:27017
